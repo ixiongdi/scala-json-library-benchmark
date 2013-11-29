@@ -21,6 +21,8 @@ object Test {
     smart
     println("-------------------------------")
     native
+    println("-------------------------------")
+    // javaee
     println("-----------Stop-----------------")    
   }
 
@@ -81,6 +83,27 @@ object Test {
 
 
     println("jackson:  " + (stop - start) + "ms")
+  }
+
+  def javaee {
+    import javax.json.Json
+
+    def test {
+       val jsonReader = Json.createReader(new java.io.StringReader(ss));
+       val array = jsonReader.readArray();
+       jsonReader.close();
+    }
+    val start = System.currentTimeMillis
+
+
+    MyBenchmark.timeMyOperation(1000, test)
+
+
+    val stop = System.currentTimeMillis
+
+
+    println("javaee:   " + (stop - start) + "ms")
+    
   }
 
 
